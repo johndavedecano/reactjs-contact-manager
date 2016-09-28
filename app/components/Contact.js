@@ -5,9 +5,6 @@ class Contact extends React.Component {
         super(props);
         this.displayName = 'Contact';
     }
-    on(e) {
-    	e.preventDefault();
-    }
     render() {
         return <div>
 	      <div className="thumbnail">
@@ -17,8 +14,8 @@ class Contact extends React.Component {
 	        <h3>
 	          {this.props.name}
 	          <small>
-	            <a data-onClick={this.on.bind(this)} href="javascript:void(0)"><span className="glyphicon glyphicon-pencil"></span></a>
-	            <a onClick={this.on.bind(this)} href="javascript:void(0)" className="delete-contract">
+	            <a onClick={this.props.onUpdate.bind(this, this.props.id)} href="javascript:void(0)"><span className="glyphicon glyphicon-pencil"></span></a>
+	            <a onClick={this.props.onDelete.bind(this, this.props.id)} href="javascript:void(0)" className="delete-contract">
 	              <span className="glyphicon glyphicon-trash"></span>
 	            </a>
 	          </small>
