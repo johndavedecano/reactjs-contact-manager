@@ -12,7 +12,7 @@ export function deleteContact(id) {
 			id
 		});
 	}
-
+}
 
 export function createContact(contact) {
 	return (dispatch, getState) => {
