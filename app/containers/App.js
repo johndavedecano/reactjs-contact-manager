@@ -1,4 +1,5 @@
 import React from 'react';
+import DevTools from './DevTools';
 
 class App extends React.Component {
     constructor(props) {
@@ -19,7 +20,8 @@ class App extends React.Component {
 		        </div>
 		      </div>
 		    </div>
-        </div>;
+            <DevTools />
+        </div>
     }
 }
 

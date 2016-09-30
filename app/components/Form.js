@@ -5,10 +5,11 @@ class Form extends React.Component {
         super(props);
         this.displayName = 'Form';
         this.state = {
-        	title: '',
+        	id: '',
 			name: '',
 			email: '',
-			telephone: ''
+			telephone: '',
+			avatar: ''
         };
     }
     onChange(e) {
@@ -21,29 +22,34 @@ class Form extends React.Component {
     	this.props.onSave(this.state);
     }
     componentWillReceiveProps(nextProps) {
-    	console.log(nextProps);
-    	this.setState(Object.assign({}, this.state, nextProps));
+    	this.setState({
+    		id: nextProps.id,
+			name: nextProps.name,
+			email: nextProps.email,
+			telephone: nextProps.telephone,
+			avatar: nextProps.avatar
+    	});
     }
     render() {
         return <div>
-			<h2 className="page-header text-center">{this.state.title} Contact</h2>
+			<h2 className="page-header text-center">{this.props.title} Contact</h2>
 			<form onSubmit={this.onSubmit.bind(this)} role="form" className="form-horizontal contract-form">
 				<div className="form-group">
 					<label className="col-sm-4 control-label">Full name:</label>
 					<div className="col-sm-6">
-						<input onChange={this.onChange.bind(this)} type="text" name="name" className="form-control contact-name-input" value={this.state.name} />
+						<input required onChange={this.onChange.bind(this)} type="text" name="name" className="form-control contact-name-input" value={this.state.name} />
 					</div>
 				</div>
 				<div className="form-group">
 					<label className="col-sm-4 control-label">Email address:</label>
 					<div className="col-sm-6">
-						<input onChange={this.onChange.bind(this)} type="email" name="email" className="form-control contact-email-input" value={this.state.email} />
+						<input required onChange={this.onChange.bind(this)} type="email" name="email" className="form-control contact-email-input" value={this.state.email} />
 					</div>
 				</div>
 				<div className="form-group">
 					<label className="col-sm-4 control-label">Telephone number:</label>
 					<div className="col-sm-6">
-						<input onChange={this.onChange.bind(this)} type="tel" name="telephone" className="form-control contact-tel-input" value={this.state.telephone} />
+						<input required onChange={this.onChange.bind(this)} type="tel" name="telephone" className="form-control contact-tel-input" value={this.state.telephone} />
 					</div>
 				</div>
 				<div className="form-group">
@@ -61,9 +67,11 @@ class Form extends React.Component {
 
 Form.defaultProps = {
 	title: 'Create',
+	id: '',
 	name: '',
 	email: '',
 	telephone: '',
+	avatar: '',
 	onSave: (properties) => {
 		console.log(properties);
 	}
