@@ -1,12 +1,15 @@
 import React from 'react';
 import Contacts  from './../components/Contacts';
 import { connect } from 'react-redux';
-import { deleteContact } from './../actions/contacts';
+import { deleteContact, reloadContacts } from './../actions/contacts';
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.displayName = 'Home';
+    }
+    componentWillMount() {
+    	return this.props.actions.reloadContacts();
     }
    	onAddContact(e) {
    		return this.context.router.push('/contacts/create');
@@ -35,7 +38,8 @@ const mapStateToProps = (state) => {
 const mapActionsToProps = (dispatch) => {
 	return {
 		actions: {
-			deleteContact: id => dispatch(deleteContact(id))
+			deleteContact: id => dispatch(deleteContact(id)),
+			reloadContacts: () => dispatch(reloadContacts())
 		}
 	}
 }
